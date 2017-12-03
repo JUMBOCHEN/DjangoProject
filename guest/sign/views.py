@@ -21,6 +21,7 @@ def login_action(request):
 
 @login_required
 def event_manage(request):
+    event_list = Event.object.all()
     username = request.session.get('user', '')
-    return render(request, 'event_manage.html', {'user': username})
+    return render(request, 'event_manage.html', {'user': username, 'event':event_list})
 
