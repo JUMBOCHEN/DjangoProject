@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <% load bootstrap3 %>
-    <% bootstrap_css %>
-    <% bootstrap_javascript %>
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
     <title>Guest Manage</title>
 </head>
 <body role="document">
@@ -26,9 +25,29 @@
             </div>
         </div>
     </nav>
-<h1>Login Success！</h1>
-<div style="float:right;">
-    <a>hey! {{ user }} welcome</a><hr/>
+    <!--发布会列表-->
+    <div class="row" style="padding-top: 80px;">
+        <div class="col-md-6">
+            <table calss="table table-striped">
+                <thread>
+                    <tr>
+                        <th>id</th><th>名称</th><th>状态</th><th>地址</th><th>时间</th>
+                    </tr>
+                </thread>
+                <tbody>
+                    {% for event in events %}
+                        <tr>
+                            <td>{{ event.id }}</td>
+                            <td>{{ event.name }}</td>
+                            <td>{{ event.status }}</td>
+                            <td>{{ event.address }}</td>
+                            <td>{{ event.start_time }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 </body>
 </html>
