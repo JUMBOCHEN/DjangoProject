@@ -26,3 +26,10 @@ def event_manage(request):
     username = request.session.get('user', '')
     return render(request, 'event_manage.html', {'user': username, 'event': event_list})
 
+def search_name(request):
+    username = request.session.get('username', '')
+    search_name = request.GET.get("name", "")
+    search_name_bytes = search_name.encode(encoding="utf-8")
+    event_list = Event.objects.filter(name__contains=search_name_bytes)
+    return render(request, "event_manage.html", {"user": username, "events": event_list})
+
