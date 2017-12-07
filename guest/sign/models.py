@@ -9,6 +9,7 @@ class Event(models.Model):
     address = models.CharField(max_length=200)          #地址
     start_time = models.DateTimeField('event_time')     #发布会时间
     create_time = models.DateTimeField(auto_now=True)   #创建时间
+
     def __str__(self):
         return self.name
 
@@ -18,7 +19,7 @@ class Guest(models.Model):
     realname = models.CharField(max_length=60)  #姓名
     phone = models.CharField(max_length=16)     #手机号
     email = models.EmailField()     #邮箱
-    realtime = models.BooleanField()        #签到状态
+    sign = models.BooleanField()        #签到状态
     create_time = models.DateTimeField(auto_now=True)   #创建时间（自动获取当前时间）
 
     class Meta:

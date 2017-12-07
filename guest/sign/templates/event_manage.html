@@ -4,7 +4,7 @@
     {% load bootstrap3 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
-    <title>Guest Manage</title>
+    <title>Event Manage</title>
 </head>
 <body role="document">
     <!--导航栏-->
@@ -40,8 +40,8 @@
     <!--发布会列表-->
     <div class="row" style="padding-top: 80px;">
         <div class="col-md-6">
-            <table calss="table table-striped">
-                <thread>
+            <table class="table table-striped">
+                <thead>
                     <tr>
                         <th>id</th>
                         <th>名称</th>
@@ -49,7 +49,7 @@
                         <th>地址</th>
                         <th>时间</th>
                     </tr>
-                </thread>
+                </thead>
                 <tbody>
                     {% for event in events %}
                         <tr>
