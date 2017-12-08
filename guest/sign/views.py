@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -62,5 +62,10 @@ def logout(request):
     auth.logout(request)
     response = HttpResponseRedirect('/index/')
     return response
+
+@login_required
+def sign_index(request, event_id):
+    event = get_object_or_404(Event, event_id)
+    return render(request, 'sign_index.html', {'event': event})
 
 
