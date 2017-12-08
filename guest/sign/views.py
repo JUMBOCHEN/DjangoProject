@@ -65,7 +65,36 @@ def logout(request):
 
 @login_required
 def sign_index(request, event_id):
-    event = get_object_or_404(Event, event_id)
+    event = get_object_or_404(Event, id=event_id)
     return render(request, 'sign_index.html', {'event': event})
+
+@login_required
+def sign_index_action(request, event_id):
+    event = get_object_or_404(Event, id=event_id)
+#    guest_list = Guest.objects.filter(event_id=event_id)
+#    sign_list = Guest.objects.filter(sign="1", event_id=event_id)
+#    guest_data = str(len(guest_list))
+#    sign_data = str(len(sign_list))
+
+    phone = request.POST.get('phone', '')
+
+    result = Guest.objects.filter(phone = phone)
+    if not result:
+        return render(request, 'sign_index.html', {'event': event, 'hint': 'phone error.'})
+
+    result = Guest.objects.filter(phone = phone, event_id = event_id)
+    if not result:
+        return render(request, 'sign_index.html', {'event': event,'hint': 'event id or phone error.'})
+
+    result = Guest.objects.get(event_id = event_id, phone = phone)
+
+    if result.sign:
+        return render(request, 'sign_index.html', {'event': event,'hint': "user has sign in."})
+    else:
+        Guest.objects.filter(event_id = event_id, phone = phone).update(sign = '1')
+        return render(request, 'sign_index.html', {'event': event,'hint':'sign in success!', 'guest': result,
+            })
+
+
 
 
