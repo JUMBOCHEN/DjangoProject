@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -55,8 +56,8 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), ],    #定义模板位置文件，BASE_DIR表示本项目根目录
+        'APP_DIRS': False,  #false 不再允许django按默认方式寻找模板，True反之
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
