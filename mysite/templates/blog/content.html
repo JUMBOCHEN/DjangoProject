@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}blog article{% endblock %}
+{% block content %}
+{% load staticfiles %}
+
+<div class="row text-center vertical-middle-sm">
+	<h1>{{ article.title }}</h1>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-md-8">
+		<p class="text-center"><span>{{ article.author.username }}</span><span style="margin-left: 20px">{{ publish }}1</span></p>
+		<div>{{ article.body }}</div>
+	</div>
+	<div class="col-xs-6 col-md-4">
+		<h2>组队！</h2>
+		<p>跟老宝搞事情：www.lakeface.xin</p>
+		<img width="100px" src="{% static '/images/missliu.jpg' %}">
+	</div>
+</div>
+{% endblock %}
