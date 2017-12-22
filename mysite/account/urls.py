@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^password-change/$', auth_views.password_change, name='password_change'),
     url(r'^password-change-done/$', auth_views.password_change_done, name='password_change_done'),
     url(r'^my-information/$', views.myself, name='my_information'),
+    url(r'^edit-my-information/$', views.myself_edit, name='edit_my_information'),
 ]
