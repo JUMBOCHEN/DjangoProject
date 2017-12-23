@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog',
     'bootstrap3',
     'account',
+    'password_reset',
 ]
 
 MIDDLEWARE = [
