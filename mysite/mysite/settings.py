@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrap3',
     'account',
     'password_reset',
+    'article',
 ]
 
 MIDDLEWARE = [
