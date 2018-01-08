@@ -1,0 +1,12 @@
+运行本项目需要安装多个package
+
+项目能够python manage.py runserver需要：
+#pip install django-password-reset
+#pip install sorl-thumbnail
+#pip install slugify
+#pip install redis
+#pip install django-braces
+#pip install Pillow
+
+完全运行还需：
+#pip install markdown
