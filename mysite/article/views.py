@@ -20,6 +20,7 @@ def article_column(request):
         column_name = request.POST['column']
         columns = ArticleColumn.objects.filter(user_id=request.user.id, column=column_name)
         if columns:
+
             return HttpResponse('2')
         else:
             ArticleColumn.objects.create(user=request.user, column=column_name)
