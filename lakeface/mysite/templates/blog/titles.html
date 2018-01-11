@@ -2,10 +2,20 @@
 {% block title %}blog titles{% endblock %}
 {% block content %}
 {% load staticfiles %}
-<div class="row text-center vertical-middle-sm">
-	<h1>我的博客</h1>
-</div>
-<div class="row">
+
+<!--文章搜索表单-->
+    <div class="page-header" style="padding-top: 60px;">
+        <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form" method="get" action="/search_name/">
+                <div class="form-group">
+                    <input name="name" type="text" placeholder="搜索文章" class="form-control">
+                </div>
+                    <button type="submit" class="btn btn-success">搜索</button>
+            </form>
+        </div><!--/.navbar-collapse -->
+    </div>
+<!--文章列表-->
+<div class="row" style="padding-top: 40px;">
 	<div class="col-xs-12 col-md-8">
 		<ul>
 			{% for blog in blogs %}

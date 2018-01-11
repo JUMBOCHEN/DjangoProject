@@ -27,8 +27,12 @@
                 </li>
                 <li><a href="{% url 'account:user_logout' %}">Logout</a></li>
                 {% else %}
-                <li><a href="{% url 'account:user_login' %}">LOGIN</a></li>
-                <li><a href="{% url 'account:user_register' %}">Sign up</a></li>
+                <div class="aw-user-nav">
+                    <span>
+                        <a class="register btn btn-normal btn-success" href="{% url 'account:user_login' %}">LOGIN</a>
+                        <a class="login btn btn-normal btn-primary" href="{% url 'account:user_register' %}">Sign up</a></li>
+                    </span>
+                </div>
                 {% endif %}
             </ul>
         </div>
