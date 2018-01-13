@@ -8,15 +8,15 @@
             <ul class="nav navbar-nav">
                 <li><a href="{% url 'home' %}">HOME</a></li>
                 <li><a href="{% url 'blog:blog_title' %}">BLOG</a></li>
-                <li><a href="{% url 'article:article_titles' %}">文章</a></li>
-                <li><a href="{% url 'image:falls_images' %}">美图</a></li>
+                <li><a href="{% url 'article:article_titles' %}">程序</a></li>
+                <li><a href="{% url 'image:falls_images' %}">美术</a></li>
                 <li><a href="{% url 'course:course_list' %}">课程</a></li>
                 <li><a href="{% url 'course:about' %}">关于本站</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right" style="margin-right:10px">
-            {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
                 <li>
-                    <div class="dropdown" style="margin-top:8px">
+                    <div class="dropdown" style="margin-top:10px">
                         <button class='btn btn-default dropdown-toggle' type='button' id='dropdownMenu' data-toggle='dropdown'>{{ user.username }}<span class='caret'></span></button>
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'account:password_change' %}">修改密码</a></li>
@@ -25,14 +25,12 @@
                         </ul>
                     </div>
                 </li>
-                <li><a href="{% url 'account:user_logout' %}">Logout</a></li>
+                <li><a href="{% url 'account:user_logout' %}">退出</a></li>
                 {% else %}
-                <div class="aw-user-nav">
-                    <span>
-                        <a class="register btn btn-normal btn-success" href="{% url 'account:user_login' %}">LOGIN</a>
-                        <a class="login btn btn-normal btn-primary" href="{% url 'account:user_register' %}">Sign up</a></li>
-                    </span>
-                </div>
+                <span>
+                    <a class="register btn btn-normal btn-success" style="margin-top: 10px" href="{% url 'account:user_login' %}">登录</a>
+                    <a class="login btn btn-normal btn-primary" style="margin-top: 10px" href="{% url 'account:user_register' %}">注册</a></li>
+                </span>
                 {% endif %}
             </ul>
         </div>
