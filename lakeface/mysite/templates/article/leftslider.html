@@ -1,4 +1,9 @@
 <div class="bg-info">
+    <div class="text-center" style="margin-top: 5px">
+        <p><h4>个人管理</h4></p>
+        <p><a href="{% url 'account:password_change' %}">修改密码</a></p>
+        <p><a href="{% url 'account:my_information' %}">我的信息</a></p>
+    </div>
     <div class="text-center" style="margin-top: 5px;">
         <p><h4>文章管理</h4></p>
         <p><a href="{% url 'article:article_column'%}">栏目管理</a></p>
