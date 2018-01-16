@@ -4,16 +4,22 @@
 {% load staticfiles %}
 
 <!--文章搜索表单-->
-    <div class="page-header" style="padding-top: 60px;">
+	<div class="page-header" style="padding-top: 60px;">
         <div id="navbar" class="navbar-collapse collapse">
             <form class="navbar-form" method="get" action="/search_name/">
                 <div class="form-group">
                     <input name="name" type="text" placeholder="搜索文章" class="form-control">
                 </div>
                     <button type="submit" class="btn btn-success">搜索</button>
+                    <button type="button" class="btn btn-success" style="margin-left: 30px">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true">写博客</span>
+                    </button>
             </form>
+
         </div><!--/.navbar-collapse -->
     </div>
+<!--写博客-->
+
 <!--文章列表-->
 <div class="row" style="padding-top: 40px;">
 	<div class="col-xs-12 col-md-8">
