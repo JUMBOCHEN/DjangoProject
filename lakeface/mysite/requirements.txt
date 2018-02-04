@@ -1,0 +1,9 @@
+Django==2.0.2
+django-braces==1.12.0
+django-password-reset==1.0
+Markdown==2.6.11
+Pillow==5.0.0
+pytz==2017.3
+redis==2.10.6
+slugify==0.0.1
+sorl-thumbnail==12.4.1

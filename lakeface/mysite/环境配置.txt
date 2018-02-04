@@ -1,3 +1,6 @@
+python3.6.1
+django 1.10.1
+
 运行本项目需要安装多个package
 
 项目能够python manage.py runserver需要：
