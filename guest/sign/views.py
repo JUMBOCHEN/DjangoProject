@@ -5,13 +5,15 @@ from django.contrib.auth.decorators import login_required
 from sign.models import Event, Guest
 from django.core.paginator import PageNotAnInteger, EmptyPage, Paginator
 
+
 # Create your views here.
 def index(request):
     return render(request, 'index.html')
 
+
 def login_action(request):
     if request.method == 'POST':
-        username = request.POST.get('username', '')
+        username = request.POST.get('username', '')#username为form <input>name属性，如何参数没有提交，返回一个空字符串
         password = request.POST.get('password', '')
         user = auth.authenticate(username=username, password=password)
         if user is not None:
@@ -22,11 +24,13 @@ def login_action(request):
         else:
             return render(request, 'index.html', {'error': 'username or password error!'})
 
+
 @login_required
 def event_manage(request):
     event_list = Event.objects.all()
     username = request.session.get('user', '')
     return render(request, 'event_manage.html', {'user': username, 'events': event_list})
+
 
 def search_name(request):
     username = request.session.get('user', '')
@@ -34,6 +38,7 @@ def search_name(request):
     search_name_bytes = search_name.encode(encoding="utf-8")
     event_list = Event.objects.filter(name__contains=search_name_bytes)
     return render(request, "event_manage.html", {"user": username, "events": event_list})
+
 
 def guest_manage(request):
     guest_list = Guest.objects.all()
@@ -50,6 +55,7 @@ def guest_manage(request):
         contacts = paginator.page(paginator.num_pages)
     return render(request, "guest_manage.html", {"user": username, "guests": contacts})
 
+
 def search_phone(request):
     username = request.session.get('user', '')
     search_phone = request.GET.get("phone", "")
@@ -57,44 +63,43 @@ def search_phone(request):
     guest_list = Guest.objects.filter(phone__contains=search_name_bytes)
     return render(request, "guest_manage.html", {"user": username, "guests": guest_list})
 
+
 @login_required
 def logout(request):
     auth.logout(request)
     response = HttpResponseRedirect('/index/')
     return response
 
+
 @login_required
 def sign_index(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     return render(request, 'sign_index.html', {'event': event})
 
+
 @login_required
 def sign_index_action(request, event_id):
     event = get_object_or_404(Event, id=event_id)
-#    guest_list = Guest.objects.filter(event_id=event_id)
-#    sign_list = Guest.objects.filter(sign="1", event_id=event_id)
-#    guest_data = str(len(guest_list))
-#    sign_data = str(len(sign_list))
+    #    guest_list = Guest.objects.filter(event_id=event_id)
+    #    sign_list = Guest.objects.filter(sign="1", event_id=event_id)
+    #    guest_data = str(len(guest_list))
+    #    sign_data = str(len(sign_list))
 
     phone = request.POST.get('phone', '')
 
-    result = Guest.objects.filter(phone = phone)
+    result = Guest.objects.filter(phone=phone)
     if not result:
         return render(request, 'sign_index.html', {'event': event, 'hint': 'phone error.'})
 
-    result = Guest.objects.filter(phone = phone, event_id = event_id)
+    result = Guest.objects.filter(phone=phone, event_id=event_id)
     if not result:
-        return render(request, 'sign_index.html', {'event': event,'hint': 'event id or phone error.'})
+        return render(request, 'sign_index.html', {'event': event, 'hint': 'event id or phone error.'})
 
-    result = Guest.objects.get(event_id = event_id, phone = phone)
+    result = Guest.objects.get(event_id=event_id, phone=phone)
 
     if result.sign:
-        return render(request, 'sign_index.html', {'event': event,'hint': "user has sign in."})
+        return render(request, 'sign_index.html', {'event': event, 'hint': "user has sign in."})
     else:
-        Guest.objects.filter(event_id = event_id, phone = phone).update(sign = '1')
-        return render(request, 'sign_index.html', {'event': event,'hint':'sign in success!', 'guest': result,
-            })
-
-
-
-
+        Guest.objects.filter(event_id=event_id, phone=phone).update(sign='1')
+        return render(request, 'sign_index.html', {'event': event, 'hint': 'sign in success!', 'guest': result,
+                                                   })

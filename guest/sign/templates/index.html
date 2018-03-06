@@ -17,18 +17,19 @@
     <link href="//v3.bootcss.com/examples/signin/signin.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <form class="form-signin" method="post" action="/login_action/">
-            <h2 class="form-signin-heading">Guest System</h2>
-            <label for="inputUsername" class="sr-only">Username</label>
-                <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-                <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                <p style="color:red">{{error}}</p> <br>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                {% csrf_token %}
-        </form>
-    </div>
+<div class="container">
+    <form class="form-signin" method="post" action="/login_action/">
+        <h2 class="form-signin-heading">Guest System</h2>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input name="username" type="text" id="inputUsername" class="form-control" placeholder="Username" required
+               autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <p style="color:red">{{error}}</p> <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        {% csrf_token %}<!--使用标签模版添加CSRF令牌-->
+    </form>
+</div>
 <!--
     <h1>发布会管理</h1>
     <form method="post" action="/login_action/">
