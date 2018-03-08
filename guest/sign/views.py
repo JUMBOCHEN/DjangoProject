@@ -13,11 +13,13 @@ def index(request):
 
 def login_action(request):
     if request.method == 'POST':
-        username = request.POST.get('username', '')#username为form <input>name属性，如何参数没有提交，返回一个空字符串
+        username = request.POST.get('username', '')  # username为form <input>name属性，如何参数没有提交，返回一个空字符串
         password = request.POST.get('password', '')
-        user = auth.authenticate(username=username, password=password)
+        '''接下来用的是Django自带的认证系统'''
+        user = auth.authenticate(username=username,
+                                 password=password)  # authenticate()认证给出的用户名跟密码，正确返回一个user对象，不正确返回None
         if user is not None:
-            auth.login(request, user)
+            auth.login(request, user)  # 调用Django自带的认证系统的login()
             request.session['user'] = username
             response = HttpResponseRedirect('/event_manage/')
             return response
@@ -25,7 +27,7 @@ def login_action(request):
             return render(request, 'index.html', {'error': 'username or password error!'})
 
 
-@login_required
+@login_required  # 限制视图必须登录才能访问
 def event_manage(request):
     event_list = Event.objects.all()
     username = request.session.get('user', '')
